@@ -195,7 +195,7 @@ export default function ServicesPage() {
                   Get In Touch
                 </PremiumButton>
               </Link>
-              <a href="mailto:nasirsiddiqui@example.com">
+              <a href="mailto:nasir@nasirsidiki.com">
                 <PremiumButton variant="secondary">
                   Email Me
                 </PremiumButton>

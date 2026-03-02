@@ -4,7 +4,7 @@ import { siteConfig, getAbsolutePath } from "./config";
 // Get configuration from environment
 const getSenderEmail = () => process.env.BREVO_SENDER_EMAIL || `noreply@${new URL(siteConfig.url).hostname}`;
 const getSenderName = () => process.env.BREVO_SENDER_NAME || siteConfig.name;
-const getAdminEmail = () => process.env.BREVO_ADMIN_EMAIL || "nasirsiddiqui@example.com";
+const getAdminEmail = () => process.env.BREVO_ADMIN_EMAIL || "nasir@nasirsidiki.com";
 
 // Get API key with validation
 const getApiKey = () => {

@@ -124,7 +124,7 @@ const Hero = () => {
                     </Link>
                   </AnimatedTooltip>
                   <AnimatedTooltip tooltipTitle="Email" tooltipDescription="Send me an email">
-                    <Link href={"mailto:nasirsiddiqui@example.com"} target="_blank">
+                    <Link href={"mailto:nasir@nasirsidiki.com"} target="_blank">
                       <div className="shadow-xl opacity-80 hover:opacity-100 rounded-lg bg-secondary border border-border p-3 text-2xl text-muted-foreground hover:text-primary transition-all duration-300">
                         <Mail className="w-6 h-6" />
                       </div>
