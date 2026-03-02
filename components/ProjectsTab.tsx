@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import Image from "next/image";
+import { FaRegArrowAltCircleRight, FaGithub } from "react-icons/fa";
 import { RiRefreshLine } from "react-icons/ri";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
@@ -12,6 +12,7 @@ interface Project {
   description: string;
   tags: string[];
   techStack?: string[];
+  repoUrl?: string;
 }
 
 interface ProjectsByCategory {
@@ -19,13 +20,14 @@ interface ProjectsByCategory {
 }
 
 // Hardcoded projects data
-const HARDODED_PROJECTS: ProjectsByCategory = {
+const HARDCODED_PROJECTS: ProjectsByCategory = {
   "Next.js": [
     {
       title: "Personal Portfolio Website",
       description: "My personal portfolio showcasing my skills, projects, and experience, built with Next.js, TypeScript, and Tailwind CSS featuring a modern dark theme with glassmorphism effects and smooth animations.",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Portfolio"],
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+      repoUrl: "https://github.com/nsidiki-art/nasir.git",
     },
     {
       title: "TeamFlow",
@@ -120,7 +122,7 @@ const ProjectTabs = () => {
     const initialCounts: Record<string, number> = {};
     const initialLoading: Record<string, boolean> = {};
     Object.keys(HARDCODED_PROJECTS).forEach(cat => {
-      initialCounts[cat] = Math.min(3, HARDODED_PROJECTS[cat]?.length || 0);
+      initialCounts[cat] = Math.min(3, HARDCODED_PROJECTS[cat]?.length || 0);
       initialLoading[cat] = false;
     });
     setVisibleCount(initialCounts);
@@ -182,7 +184,7 @@ const ProjectTabs = () => {
 
         {/* Tab Content */}
         {categories.map((category) => {
-          const projects = HARDODED_PROJECTS[category] || [];
+          const projects = HARDCODED_PROJECTS[category] || [];
           const visibleProjects = projects.slice(0, visibleCount[category] || PROJECTS_PER_PAGE);
           const hasMore = projects.length > (visibleCount[category] || PROJECTS_PER_PAGE);
           const isLoading = loadingMore[category] || false;
@@ -205,19 +207,20 @@ const ProjectTabs = () => {
                     whileHover={{ y: -8 }}
                     className="scroll-smooth border border-border rounded-xl overflow-hidden shadow-lg bg-card group"
                   >
-                    {/* Placeholder gradient instead of image */}
+                    {/* Placeholder image */}
                     <div className="relative overflow-hidden">
                       <motion.div
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
-                        className="lg:h-48 md:h-36 w-full bg-gradient-to-br from-primary/20 via-accent/20 to-primary/30 flex items-center justify-center"
+                        className="lg:h-48 md:h-36 w-full"
                       >
-                        <div className="text-center p-6">
-                          <h3 className="text-2xl font-bold text-foreground mb-2">
-                            {project.title.split(' ').slice(0, 2).join('')}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">Project</p>
-                        </div>
+                        <Image
+                          src="/assets/placeholder.png"
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
                       </motion.div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
@@ -239,13 +242,21 @@ const ProjectTabs = () => {
                       </div>
 
                       <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
-                      <div className="flex items-center gap-4">
-                        {project.techStack && (
-                          <div className="text-xs text-muted-foreground flex flex-wrap gap-1">
-                            {project.techStack.map((tech, i) => (
-                              <span key={i} className="text-accent">•</span>
-                            ))}
-                          </div>
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="text-xs text-muted-foreground flex flex-wrap gap-1">
+                          {project.techStack && project.techStack.map((tech, i) => (
+                            <span key={i} className="text-accent">•</span>
+                          ))}
+                        </div>
+                        {project.repoUrl && (
+                          <a
+                            href={project.repoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accent/80 transition-colors flex items-center gap-1 text-sm font-medium"
+                          >
+                            <FaGithub className="text-base" />
+                          </a>
                         )}
                       </div>
                     </div>

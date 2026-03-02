@@ -26,6 +26,7 @@ export default function Chatbot() {
 
   // Local input state (AI SDK v6 pattern)
   const [input, setInput] = useState("");
+  const [isSimulating, setIsSimulating] = useState(false);
 
   // Theme
   const { theme, setTheme } = useTheme();
@@ -37,6 +38,7 @@ export default function Chatbot() {
     regenerate,
     stop,
     status,
+    setMessages,
   } = useChat({
     messages: INITIAL_MESSAGES,
     // Throttle UI updates to 50ms to reduce excessive re-renders during streaming
@@ -46,7 +48,7 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const isLoading = status === "submitted" || status === "streaming";
+  const isLoading = status === "submitted" || status === "streaming" || isSimulating;
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -71,11 +73,82 @@ export default function Chatbot() {
     };
   }, [stop]);
 
-  // Handle form submit
+  // Handle form submit with client-side greeting intercept
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = input.trim();
     if (!trimmed || isLoading) return;
+
+    // Check for simple greetings to handle client-side (save LLM latency/cost)
+    const lowerInput = trimmed.toLowerCase().replace(/[^a-z0-9\s]/g, ""); // strip punctuation
+    
+    // Comprehensive array to catch misspellings and variations
+    const greetingMatches = [
+      "hi", "hello", "hey", "salam", "assalamualikum", "assalamoalikum", "assalamu alaikum", "assalamo alaikum", 
+      "greetings", "assalmualikum", "asalamualikum", "asalam", "assalam", "hi there", "hello there"
+    ];
+    
+    // Check if input strictly is a greeting, or starts with a greeting (e.g., "hi nasir")
+    const isGreeting = greetingMatches.some(g => 
+      lowerInput === g || lowerInput.startsWith(g + " ")
+    );
+    
+    if (isGreeting) {
+      setInput("");
+      
+      const fakeUserMessage: UIMessage = {
+        id: `user-${Date.now()}`,
+        role: "user",
+        parts: [{ type: "text", text: trimmed }]
+      };
+      
+      let botReply = "Hi there! 👋 How can I help you today?";
+      if (lowerInput.includes("salam") || lowerInput.includes("assalam") || lowerInput.includes("asalam")) {
+        botReply = "Walaikum Assalam! 👋 How can I help you today?";
+      }
+
+      const botMessageId = `bot-${Date.now()}`;
+      const emptyBotMessage: UIMessage = {
+        id: botMessageId,
+        role: "assistant",
+        parts: [{ type: "text", text: "" }]
+      };
+      
+      // Append user message and empty bot message to trigger loading dots
+      setMessages([...messages, fakeUserMessage, emptyBotMessage]);
+      setIsSimulating(true);
+
+      // Simulate thinking delay (500-1000ms)
+      const thinkingDelay = Math.floor(Math.random() * 500) + 500;
+      
+      setTimeout(() => {
+        let currentText = "";
+        const chars = botReply.split("");
+        let charIndex = 0;
+        
+        // Artificial streaming effect
+        const streamInterval = setInterval(() => {
+          if (charIndex < chars.length) {
+            currentText += chars[charIndex];
+            setMessages((prev) => 
+              prev.map(msg => 
+                msg.id === botMessageId 
+                  ? { ...msg, parts: [{ type: "text", text: currentText }] }
+                  : msg
+              )
+            );
+            charIndex++;
+          } else {
+            clearInterval(streamInterval);
+            setIsSimulating(false);
+          }
+        }, 15); // Adjust for typing speed
+      }, thinkingDelay);
+
+      return;
+    }
+
+    // Normal LLM flow
     sendMessage({ text: trimmed });
     setInput("");
   };
@@ -204,9 +277,9 @@ export default function Chatbot() {
                         AI Assistant
                       </h3>
                       <p className="text-xs text-muted-foreground font-medium">
-                        {status === "streaming" ? (
+                        {status === "streaming" || (isSimulating && messages.length > 0 && getMessageText(messages[messages.length - 1]).length > 0) ? (
                           "Typing..."
-                        ) : status === "submitted" ? (
+                        ) : status === "submitted" || isSimulating ? (
                           "Thinking..."
                         ) : (
                           "Ask about My Skills & services"
