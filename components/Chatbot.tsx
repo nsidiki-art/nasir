@@ -46,13 +46,17 @@ export default function Chatbot() {
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isLoading = status === "submitted" || status === "streaming" || isSimulating;
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom when new messages arrive or stream
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
   }, [messages]);
 
   // Mounted state for theme toggle hydration safety
@@ -325,7 +329,7 @@ export default function Chatbot() {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-5 min-h-0 [scrollbar-width:thin] bg-card/95 backdrop-blur-md">
+              <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4 space-y-5 min-h-0 [scrollbar-width:thin] bg-card/95 backdrop-blur-md">
                 <AnimatePresence initial={false}>
                   {messages.map((message) => {
                     const text = getMessageText(message);
@@ -366,7 +370,6 @@ export default function Chatbot() {
                                     <Link
                                       href={href || "#"}
                                       className="text-accent hover:underline font-semibold transition-colors"
-                                      onClick={() => setIsOpen(false)}
                                     >
                                       {children}
                                     </Link>
