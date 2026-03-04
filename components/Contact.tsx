@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { PremiumButton } from "./ui/PremiumButton";
+import { NotificationPopup } from "./ui/NotificationPopup";
 
 const Contact = () => {
   // Track when component rendered for timing validation
@@ -42,7 +43,7 @@ const Contact = () => {
         },
         body: JSON.stringify({
           ...formData,
-          timestamp: formTimestamp, // Include timestamp for timing validation
+          timestamp: formTimestamp,
         }),
       });
 
@@ -51,9 +52,8 @@ const Contact = () => {
       if (response.ok && data.success) {
         setSubmitStatus({
           type: "success",
-          message: "Message sent successfully! I'll get back to you soon.",
+          message: "Your message has been sent! I'll get back to you shortly.",
         });
-        // Reset form
         setFormData({ name: "", email: "", subject: "", message: "", website: "" });
       } else {
         setSubmitStatus({
@@ -71,14 +71,26 @@ const Contact = () => {
     }
   };
 
+  const handleCloseNotification = () => {
+    setSubmitStatus({ type: null, message: "" });
+  };
+
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-7xl mx-auto text-gray-400 body-font relative px-4 py-24"
-    >
+    <>
+      {/* Premium Notification Popup */}
+      <NotificationPopup
+        type={submitStatus.type}
+        message={submitStatus.message}
+        onClose={handleCloseNotification}
+      />
+
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto text-gray-400 body-font relative px-4 py-24"
+      >
       <div className="flex flex-col md:flex-row gap-10">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -146,24 +158,6 @@ const Contact = () => {
               message and I&apos;ll get back to you shortly.
             </p>
           </motion.div>
-
-          {/* Status Messages */}
-          {submitStatus.type && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`p-4 rounded-lg mb-4 ${
-                submitStatus.type === "success"
-                  ? "bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400"
-                  : "bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400"
-              }`}
-            >
-              <p className="text-sm font-medium">
-                {submitStatus.type === "success" ? "✓ " : "✕ "}
-                {submitStatus.message}
-              </p>
-            </motion.div>
-          )}
 
           <form onSubmit={handleSubmit}>
             {/* Honeypot field - hidden from humans, traps bots */}
@@ -287,6 +281,7 @@ const Contact = () => {
         </motion.div>
       </div>
     </motion.section>
+    </>
   );
 };
 
