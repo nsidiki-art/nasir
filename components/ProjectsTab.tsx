@@ -248,16 +248,6 @@ const ProjectTabs = () => {
                             <span key={i} className="text-accent">•</span>
                           ))}
                         </div>
-                        {project.repoUrl && (
-                          <a
-                            href={project.repoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-accent hover:text-accent/80 transition-colors flex items-center gap-1 text-sm font-medium"
-                          >
-                            <FaGithub className="text-base" />
-                          </a>
-                        )}
                       </div>
                     </div>
                   </motion.div>
