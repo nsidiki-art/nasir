@@ -100,11 +100,11 @@ const Contact = () => {
           className="md:w-1/2 w-full opacity-100 rounded-lg overflow-hidden p-5 bg-card dark:bg-[#2d3136] shadow-xl"
         >
           <Image
-            src="/assets/contact.png"
+            src="/assets/contact.jpeg"
             alt="contact"
-            className="rounded-md mb-5 object-cover w-full h-52 md:h-64"
+            className="rounded-md mb-5 object-cover w-full h-64 md:h-80"
             width={600}
-            height={400}
+            height={500}
             unoptimized
           />
           <h2 className="font-semibold text-foreground text-2xl sm:text-3xl">

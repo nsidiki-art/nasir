@@ -13,6 +13,7 @@ interface Project {
   tags: string[];
   techStack?: string[];
   repoUrl?: string;
+  image?: string;
 }
 
 interface ProjectsByCategory {
@@ -28,86 +29,68 @@ const HARDCODED_PROJECTS: ProjectsByCategory = {
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Portfolio"],
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
       repoUrl: "https://github.com/nsidiki-art/nasir.git",
+      image: "/assets/portfolio.jpeg",
     },
     {
-      title: "TeamFlow",
-      description: "An AI-powered team management and task assignment platform designed for agencies. Features intelligent task distribution, team workload balancing, and automated project tracking with real-time collaboration.",
-      tags: ["Next.js", "AI", "SaaS", "Team Management", "Agencies"],
+      title: "Skillex Learning Platform",
+      description: "An online learning platform offering courses and skill development modules. Built with Next.js and integrated with modern payment gateways and interactive video modules.",
+      tags: ["Next.js", "React", "EdTech", "Platform"],
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+      image: "/assets/skillex.jpeg",
     },
     {
-      title: "RentParlo",
-      description: "A peer-to-peer marketplace for renting goods. Connects lenders with borrowers, featuring secure transactions, rental agreements, item verification, and a streamlined user experience.",
-      tags: ["Next.js", "Marketplace", "Rental", "P2P", "E-commerce"],
-      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    },
-    {
-      title: "FurnitureMart.pk",
-      description: "A fully dynamic furniture marketplace built using Next.js, Sanity CMS, and Tailwind CSS. Features product catalog, shopping cart, payment integration, and admin panel for inventory management.",
+      title: "Furniture E-Commerce",
+      description: "A fully dynamic furniture marketplace built using Next.js, Sanity CMS, and Tailwind CSS. Features product catalog, shopping cart, payment integration, and admin panel.",
       tags: ["Next.js", "Sanity", "E-commerce", "Marketplace"],
       techStack: ["Next.js", "Sanity CMS", "Tailwind CSS"],
+      image: "/assets/furniture.jpeg",
+    },
+    {
+      title: "Apparel StoreFront",
+      description: "A responsive e-commerce web application for an urban clothing brand. Features user authentication, wishlists, and a streamlined checkout process tailored for modern consumers.",
+      tags: ["Next.js", "E-Commerce", "Fashion", "Retail"],
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+      image: "/assets/apparel-ecom.jpeg",
     },
   ],
   "WordPress": [
     {
-      title: "Landscape & Gardening Website",
-      description: "Professional website for a landscape and gardening service provider, showcasing their expertise, services portfolio, and customer testimonials with SEO optimization.",
+      title: "Artisan Coffee Roasters",
+      description: "A rich and inviting WordPress website for a local coffee shop, showcasing their menu, sourcing process, events, and an integrated table reservation system.",
       tags: ["WordPress", "PHP", "Elementor", "Business"],
+      image: "/assets/coffee.jpeg",
     },
     {
-      title: "Four M Enterprises",
-      description: "Corporate website for a roofing material supplier, featuring product catalog, request quote system, and company information pages designed for B2B lead generation.",
-      tags: ["WordPress", "Business", "SEO", "B2B"],
+      title: "Creative Media Agency",
+      description: "Corporate website for a creative media and digital marketing agency highlighting their full portfolio of campaigns, case studies, and client video testimonials.",
+      tags: ["WordPress", "Business", "Media", "Agency"],
+      image: "/assets/media.jpeg",
     },
     {
-      title: "IDI Overseas HR",
-      description: "HR consultancy website with job listings, company profile, services overview, and contact forms for overseas employment opportunities.",
-      tags: ["WordPress", "PHP", "HR", "Recruitment"],
+      title: "The Book Haven",
+      description: "An online bookstore built with WooCommerce, featuring extensive book categories, specialized author interviews, and a dedicated community reader review section.",
+      tags: ["WordPress", "WooCommerce", "E-commerce", "Retail"],
+      image: "/assets/book.jpeg",
     },
     {
-      title: "Rukhsar Marriage Bureau",
-      description: "Matchmaking service website with profile listings, success stories, service packages, and inquiry forms for matrimonial services.",
-      tags: ["WordPress", "PHP", "Matrimonial", "Services"],
-    },
-  ],
-  "Tools & Automation": [
-    {
-      title: "AI Content Generator",
-      description: "Tool for generating AI-powered social media content from YouTube videos. Uses OpenAI API for content generation and Streamlit for the web interface.",
-      tags: ["Python", "Automation", "AI", "Content"],
-      techStack: ["Python", "Streamlit", "OpenAI API"],
-    },
-    {
-      title: "AI Data Alchemist",
-      description: "Data transformation and cleaning tool that helps users filter, visualize, and get AI-powered suggestions for CSV/Excel files with an intuitive web interface.",
-      tags: ["Python", "AI", "Data", "Analytics"],
-      techStack: ["Python", "Streamlit", "Pandas", "Gemini API"],
-    },
-    {
-      title: "Password Strength Meter",
-      description: "Secure password management tool that evaluates password strength, generates strong passwords, and provides security recommendations with a clean, user-friendly interface.",
-      tags: ["Python", "Streamlit", "Security", "Tool"],
-      techStack: ["Python", "Streamlit"],
-    },
-    {
-      title: "AI Powered Unit Converter",
-      description: "Smart unit and currency converter with real-time exchange rates, AI-powered conversion suggestions, and support for multiple measurement categories.",
-      tags: ["Python", "Streamlit", "AI", "Converter"],
-      techStack: ["Python", "Streamlit"],
+      title: "App Design Studio",
+      description: "A premium landing page for a mobile app design studio focusing on lead generation, dynamic service offerings, and high-conversion aesthetic funnels.",
+      tags: ["WordPress", "Design", "Landing Page", "Services"],
+      image: "/assets/app-design.jpeg",
     },
   ],
-  "HTML & CSS": [
+  "UI/UX Design": [
     {
-      title: "Resume Builder",
-      description: "Custom resume-building tool with PDF export functionality, professional templates, real-time preview, and print-ready output for job applications.",
-      tags: ["HTML", "TypeScript", "Tool", "PDF"],
-      techStack: ["HTML", "TypeScript", "JavaScript", "CSS"],
+      title: "Modern UI Component Library",
+      description: "A comprehensive design system featuring versatile, accessible UI components crafted for scalability and modern aesthetics across diverse web platforms.",
+      tags: ["Figma", "Design System", "UI", "Components"],
+      image: "/assets/ui-design.jpeg",
     },
     {
-      title: "Inventory Management System",
-      description: "Simple yet effective inventory tracking tool with add/edit/delete functionality, local storage persistence, and clean interface for small business inventory.",
-      tags: ["HTML", "TypeScript", "Tool", "Management"],
-      techStack: ["HTML", "TypeScript", "JavaScript", "CSS"],
+      title: "SaaS Dashboard UX",
+      description: "A meticulous UX case study and high-fidelity prototype for a SaaS analytics dashboard focusing on data visualization, intuitive navigation, and dark mode interface.",
+      tags: ["Figma", "UX", "Dashboard", "Prototyping"],
+      image: "/assets/ui-ux.jpeg",
     },
   ],
 };
@@ -215,7 +198,7 @@ const ProjectTabs = () => {
                         className="h-44 md:h-36 lg:h-48 w-full"
                       >
                         <Image
-                          src="/assets/placeholder.png"
+                          src={project.image || "/assets/placeholder.png"}
                           alt={project.title}
                           fill
                           className="object-cover"
