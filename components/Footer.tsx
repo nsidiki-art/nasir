@@ -5,8 +5,6 @@ import Link from "next/link";
 import {
   FaLinkedin,
   FaFacebookSquare,
-  FaInstagramSquare,
-  FaGithubSquare,
 } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
@@ -42,35 +40,21 @@ const Footer = () => {
             Services
           </Link>
           <Link
-            href={"https://www.twitter.com/NasirSiddiqui"}
-            className="text-gray-500 text-2xl hover:text-[#171515]"
-            target="_blank"
-          >
-            <FaSquareXTwitter />
-          </Link>
-          <Link
-            href={"https://www.linkedin.com/in/nasirsiddiqui/"}
+            href={"https://www.linkedin.com/in/nasirsidiki"}
             className="text-gray-500 text-2xl hover:text-[#0077B5]"
             target="_blank"
           >
             <FaLinkedin />
           </Link>
           <Link
-            href={"https://www.instagram.com/nasirsiddiqui/"}
-            className="text-gray-500 text-2xl hover:text-[#d62976]"
-            target="_blank"
-          >
-            <FaInstagramSquare />
-          </Link>
-          <Link
-            href={"https://github.com/nasirsiddiqui"}
+            href={"https://www.x.com/nasirs74"}
             className="text-gray-500 text-2xl hover:text-[#171515]"
             target="_blank"
           >
-            <FaGithubSquare />
+            <FaSquareXTwitter />
           </Link>
           <Link
-            href={"https://www.facebook.com/nasirsiddiqui"}
+            href={"https://www.facebook.com/nasirsidiki"}
             className="text-gray-500 text-2xl hover:text-[#5890FF]"
             target="_blank"
           >

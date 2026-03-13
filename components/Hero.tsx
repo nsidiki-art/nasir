@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 import { HeroHighlight } from "./ui/HeroHighlight";
 import { AnimatedTooltip } from "./ui/AnimatedTooltip";
 import { PremiumButton } from "./ui/PremiumButton";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Facebook, Mail } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import dynamic from "next/dynamic";
 
 const Typewriter = dynamic(
@@ -109,17 +110,24 @@ const Hero = () => {
               <div>
                 <p className="mt-8 lg:mt-0 mb-2 font-bold md:ml-4 text-xs tracking-widest text-gray-400 uppercase">CONNECT WITH ME:</p>
                 <div className="container flex flex-row items-center gap-3 justify-center md:justify-start">
-                  <AnimatedTooltip tooltipTitle="Linkedin" tooltipDescription="Connect with me on Linkedin">
-                    <Link href={"https://www.linkedin.com/in/nasirsiddiqui/"} target="_blank">
+                  <AnimatedTooltip tooltipTitle="LinkedIn" tooltipDescription="Connect with me on LinkedIn">
+                    <Link href={"https://www.linkedin.com/in/nasirsidiki"} target="_blank">
                       <div className="shadow-xl opacity-80 hover:opacity-100 rounded-lg bg-secondary border border-border p-3 text-2xl text-muted-foreground hover:text-primary transition-all duration-300">
                         <Linkedin className="w-6 h-6" />
                       </div>
                     </Link>
                   </AnimatedTooltip>
-                  <AnimatedTooltip tooltipTitle="Github" tooltipDescription="View my repositories on Github">
-                    <Link href={"https://github.com/nasirsiddiqui"} target="_blank">
+                  <AnimatedTooltip tooltipTitle="Twitter" tooltipDescription="Follow me on X (Twitter)">
+                    <Link href={"https://www.x.com/nasirs74"} target="_blank">
                       <div className="shadow-xl opacity-80 hover:opacity-100 rounded-lg bg-secondary border border-border p-3 text-2xl text-muted-foreground hover:text-primary transition-all duration-300">
-                        <Github className="w-6 h-6" />
+                        <FaXTwitter className="w-6 h-6" />
+                      </div>
+                    </Link>
+                  </AnimatedTooltip>
+                  <AnimatedTooltip tooltipTitle="Facebook" tooltipDescription="Connect with me on Facebook">
+                    <Link href={"https://www.facebook.com/nasirsidiki"} target="_blank">
+                      <div className="shadow-xl opacity-80 hover:opacity-100 rounded-lg bg-secondary border border-border p-3 text-2xl text-muted-foreground hover:text-primary transition-all duration-300">
+                        <Facebook className="w-6 h-6" />
                       </div>
                     </Link>
                   </AnimatedTooltip>

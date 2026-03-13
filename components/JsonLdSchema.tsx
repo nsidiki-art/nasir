@@ -21,11 +21,9 @@ const JsonLdSchema: React.FC<JsonLdSchemaProps> = ({ type, pageUrl }) => {
     "url": baseUrl,
     "image": `${baseUrl}/assets/Nasir.png`,
     "sameAs": [
-      "https://twitter.com/nasirsiddiqui",
-      "https://linkedin.com/in/nasirsiddiqui",
-      "https://github.com/nasirsiddiqui",
-      "https://facebook.com/nasirsiddiqui",
-      "https://www.instagram.com/nasirsiddiqui/",
+      "https://www.linkedin.com/in/nasirsidiki",
+      "https://www.x.com/nasirs74",
+      "https://www.facebook.com/nasirsidiki",
     ],
     "knowsAbout": [
       "AI Agents Development",
